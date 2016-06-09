@@ -1,0 +1,26 @@
+@startuml
+start
+:Message stream;
+fork
+  :Indications;
+fork again
+  :Requests;
+fork again
+  :Responses;
+
+'(*) --> "Message Stream" as mstream
+'
+'mstream --> "Indication Messages" as ind
+'mstream --> "Request Messages" as req
+'mstream --> "Response Messages" as resp
+'
+'ind --> "Publish"
+'
+'resp --> if "" then
+'-->[Transaction exists] "Process (tid, resp)"
+'else
+'-->[No transaction] "Trash"
+'endif
+'
+'req --> "Assign"
+@enduml
