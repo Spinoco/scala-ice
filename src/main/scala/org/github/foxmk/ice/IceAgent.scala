@@ -9,12 +9,16 @@ import org.github.foxmk.ice.harvest.{ CandidateHarvester, Component }
 /**
   * Created by Artyom Artemiev on 08.06.16.
   */
-class IceAgent {
+abstract class IceAgent {
 
 
   private val mediaStreams: Seq[MediaStream] = ???
 
   def createMediaStream(streamName: String, rtcp: Boolean, rtcpMux: Boolean): MediaStream = {
+
+
+
+
     ???
   }
 
@@ -29,7 +33,7 @@ class IceAgent {
     *
     * @return
     */
-  def getSdpDescription(mediaStream: MediaStream): Future[SdpMessage] = ???
+  def getSdpDescription(mediaStream: MediaStreamGroup): Future[SdpMessage] = ???
 
   private def run(): Unit = {
     // Candidate harvest (on creating stream or SDP request)
@@ -56,6 +60,14 @@ class IceAgent {
     // 4) prioritize
     // 5) response to caller
   }
+
+}
+
+class IceLiteAgent extends IceAgent {
+
+}
+
+class IceFullAgent extends IceAgent {
 
 }
 

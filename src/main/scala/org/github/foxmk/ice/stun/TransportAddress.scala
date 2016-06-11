@@ -9,6 +9,9 @@ import org.ice4j.ice.NetworkUtils
   */
 class TransportAddress private(address: InetAddress, port: Int, transport: Transport.Value)
   extends InetSocketAddress(address, port) {
+
+  def isIpv6: Boolean = ???
+
   override def toString: String = {
 //    var hostAddress: String = getHostAddress()
 //    if (hostAddress == null) {

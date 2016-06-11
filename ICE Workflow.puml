@@ -1,0 +1,40 @@
+@startuml
+participant "Alice"
+participant "NAT"
+participant "STUN Server" as STUN
+participant "Bob"
+
+autonumber
+== Phase 1: Initial harvest ==
+
+Alice -> Alice: Host harvesting
+group Reflexive harvest (ICE Full only)
+      Alice -> NAT: STUN Request
+      NAT -> STUN: STUN Request
+      STUN -> NAT: STUN Response
+      NAT -> Alice: STUN Response
+end
+
+== Phase 2: Sending offer ==
+
+Alice -> Bob: SDP Offer message
+
+== Phase 1A: Peer's harvest ==
+
+Bob -> Bob: Host harvesting
+group Reflexive harvest (ICE Full only)
+    Bob -> STUN: STUN Request
+    STUN -> Bob: STUN Response
+end
+
+== Phase 2A: Receiving offer ==
+
+Bob -> Alice: SDP Answer message
+
+== Phase 3: Starting connectivity checks ==
+Alice -> NAT: STUN check request
+NAT -> Bob: STUN check request
+Bob -> NAT: STUN check response
+NAT -> Alice: STUN check response
+
+@enduml

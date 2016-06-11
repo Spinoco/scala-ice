@@ -1,0 +1,49 @@
+@startuml
+class MediaStreamGroup {
+  name: String
+  streams: Seq[MediaStream]
+}
+
+class MediaStream {
+  rtp: Component
+  rtcp: Cpmponent
+}
+
+class Component
+
+abstract class Candidate
+
+class CandidatePair {
+  local: Candidate
+  remote: Candidate
+}
+
+class CheckList {
+  candidatePairs: Seq[CandidatePair]
+}
+
+MediaStreamGroup o-- MediaStream
+MediaStream *-- Component
+Component "1" *-- "1" CheckList
+CheckList "1" o-- "0..*" CandidatePair
+CandidatePair *-- "2" Candidate
+
+
+abstract class IceAgent {
+}
+
+class HarvestManager {
+
+}
+
+IceAgent *-- HarvestManager
+
+class Stun {
+
+
+
+}
+
+class TransactionManager
+
+@enduml

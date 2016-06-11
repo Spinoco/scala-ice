@@ -8,3 +8,9 @@ import org.github.foxmk.ice.classes.Candidate
 trait CandidateHarvester {
   def harvest(component: Component): Seq[Candidate]
 }
+
+class HostCandidateHarvester extends CandidateHarvester {
+  override def harvest(component: Component): Seq[Candidate] = {
+    ???
+  }
+}

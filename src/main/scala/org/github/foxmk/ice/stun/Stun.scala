@@ -18,7 +18,4 @@ class Stun {
     * @param message
     */
   def send(message: Message): Unit = ???
-
-
-
 }

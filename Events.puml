@@ -1,0 +1,14 @@
+@startuml
+participant Manager
+participant Harvester
+
+
+Manager -> Harvester: Media stream created
+Harvester -> Manager: Candidates found
+
+Manager -> Prioritizer: Candidates found
+Prioritizer -> Manager: Candidates prioritized
+
+Manager -> SDPSender: Send offer
+
+@enduml
