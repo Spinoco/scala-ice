@@ -1,5 +1,7 @@
 package org.github.foxmk.ice.stun
 
+import org.github.foxmk.ice.classes.TransportAddress
+
 /**
   * Created by Artyom Artemiev on 08.06.16.
   */

@@ -1,14 +1,36 @@
 @startuml
-participant Manager
-participant Harvester
+actor RMS
+participant "IceAgent" as Agent
+box "Harvesters"
+participant HostHarvester
+participant StunHarvester
+end box
+participant "ConnectivityCheck\nClient/Server" as CCC
+participant StunServer
 
+== Phase 1: ==
+RMS->Agent: CreateStream(params...) \n or IncomingSdpOffer()
 
-Manager -> Harvester: Media stream created
-Harvester -> Manager: Candidates found
+group Harvest
+Agent->HostHarvester: HarvestCandidates(component)
+HostHarvester->Agent: CandidateFound(candidate)
+Agent->StunHarvester: HarvestCandidates(component)
+StunHarvester->StunServer: StunRequest
+StunServer->StunHarvester: StunResponse
+StunHarvester->Agent: CandidateFound(candidate)
+end
 
-Manager -> Prioritizer: Candidates found
-Prioritizer -> Manager: Candidates prioritized
+Agent->RMS: PreparedSdpOffer() \n or PreparedSdpAnswer()
 
-Manager -> SDPSender: Send offer
+== Phase 2: ==
+RMS->Agent: IncomingSdpAnswer()
+Agent->CCC: StartChecks()
+CCC->StunServer: STUN Check request
+StunServer->CCC: STUN check response
+CCC->Agent: HostAvailable()
+Agent->RMS: ConnectionEstablished()
+CCC->Agent: HostAvailable()
+CCC->Agent: HostAvailable()
+
 
 @enduml

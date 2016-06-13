@@ -1,14 +1,18 @@
 package org.github.foxmk.ice.classes
 
-import org.github.foxmk.ice.stun.TransportAddress
+import org.github.foxmk.ice.harvest.Component
 
 /**
   * @author Artyom Artemiev
   */
 abstract class Candidate {
   def address: TransportAddress
-  def candidateType: CandidateType
-def priority: Priority
+  def candidateType: CandidateType.Value
+  def priority: Priority
+  def isDefault: Boolean
+  def foundation: Foundation
+
+  def component: Component
 
 
 }
@@ -19,6 +23,6 @@ case class ServerReflexiveCandidate() extends Candidate
 
 abstract class CandidateState
 
-case class CandidateType
+
 
 case class Priority

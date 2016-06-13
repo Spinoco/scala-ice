@@ -3,6 +3,7 @@ package org.github.foxmk.ice
 import java.net.SocketAddress
 import java.nio.{ FloatBuffer, LongBuffer, _ }
 
+import org.github.foxmk.ice.agent.{ IceAgent, IceLiteAgent }
 import org.scalatest.FunSuite
 
 /**

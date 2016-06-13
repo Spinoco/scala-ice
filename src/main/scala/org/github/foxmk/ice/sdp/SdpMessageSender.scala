@@ -1,8 +1,7 @@
 package org.github.foxmk.ice.sdp
 
 import org.github.foxmk.ice.MediaStreamGroup
-import org.github.foxmk.ice.classes.SdpMessage
-import org.github.foxmk.ice.stun.TransportAddress
+import org.github.foxmk.ice.classes.TransportAddress
 
 /**
   * @author Artyom Artemiev

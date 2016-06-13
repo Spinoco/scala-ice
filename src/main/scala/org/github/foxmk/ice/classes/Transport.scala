@@ -1,4 +1,4 @@
-package org.github.foxmk.ice.stun
+package org.github.foxmk.ice.classes
 
 /**
   * The <tt>Transport</tt> enumeration contains all currently known transports
